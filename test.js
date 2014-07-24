@@ -158,6 +158,12 @@ test('test_cb_async_except', function(t) {
 
 test('test_external', function(t) {
   var handle = b.test_make_external();
+
+  // these operations are failing with TypeError
+  // on Node 0.11.13
+  t.strictEqual(handle+'', '[object Object]');
+  t.strictEqual(isNaN(handle), true);
+
   b.test_get_external(handle);
   t.end();
 });
